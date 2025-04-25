@@ -1,7 +1,7 @@
 function App() {
   return (
     <>
-      <p className="pt-2 p-4">Movie App</p>
+      <p className="p-4 pt-2">Movie App</p>
     </>
   );
 }

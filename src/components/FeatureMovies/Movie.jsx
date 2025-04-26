@@ -1,9 +1,9 @@
 import React from "react";
 import { FaPlay } from "react-icons/fa6";
 
-const FeatureMovies = () => {
+const Movie = () => {
   return (
-    <div className="relative text-white">
+    <>
       <img
         src="https://image.tmdb.org/t/p/original/p5ozvmdgsmbWe0H8Xk7Rc8SCwAB.jpg"
         alt=""
@@ -38,16 +38,8 @@ const FeatureMovies = () => {
           </div>
         </div>
       </div>
-      <div className="absolute right-8 bottom-[10%] xl:right-24">
-        <ul className="flex gap-1">
-          <li className="h-1 w-6 cursor-pointer bg-slate-100 xl:w-8"></li>
-          <li className="h-1 w-6 cursor-pointer bg-slate-600 xl:w-8"></li>
-          <li className="h-1 w-6 cursor-pointer bg-slate-600 xl:w-8"></li>
-          <li className="h-1 w-6 cursor-pointer bg-slate-600 xl:w-8"></li>
-        </ul>
-      </div>
-    </div>
+    </>
   );
 };
 
-export default FeatureMovies;
+export default Movie;

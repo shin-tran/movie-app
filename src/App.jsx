@@ -1,22 +1,10 @@
-import { FaMagnifyingGlass, FaPlay } from "react-icons/fa6";
+import { FaPlay } from "react-icons/fa6";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div>
-      <header className="flex h-18 items-center justify-between bg-slate-950 px-8 text-white">
-        <div className="flex items-center gap-4">
-          <img
-            src="./netflix-logo.png"
-            alt="Netflix Logo"
-            className="w-16 sm:w-28"
-          />
-          <a href="#">Phim</a>
-          <a href="#">Truyền hình</a>
-        </div>
-        <div>
-          <FaMagnifyingGlass className="cursor-pointer" />
-        </div>
-      </header>
+      <Header />
       <div className="relative text-white">
         <img
           src="https://image.tmdb.org/t/p/original/p5ozvmdgsmbWe0H8Xk7Rc8SCwAB.jpg"

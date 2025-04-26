@@ -42,22 +42,24 @@ function App() {
               </p>
             </div>
             <div className="mt-4">
-              <button className="rounded bg-white px-4 py-2 text-[10px] text-black lg:text-lg">
+              <button className="text-2.5 xl:text-4.5 mr-2 cursor-pointer rounded bg-white px-4 py-2 text-black lg:text-lg">
                 <FaPlay className="inline-block" />
                 Trailer
               </button>
-              <button>View Detail</button>
+              <button className="text-2.5 xl:text-4.5 cursor-pointer rounded bg-slate-300/35 px-4 py-2 lg:text-lg">
+                View Detail
+              </button>
             </div>
           </div>
         </div>
-      </div>
-      <div>
-        <ul>
-          <li className="h-0.5 w-4 cursor-pointer bg-slate-600"></li>
-          <li className="h-0.5 w-4 cursor-pointer bg-slate-600"></li>
-          <li className="h-0.5 w-4 cursor-pointer bg-slate-600"></li>
-          <li className="h-0.5 w-4 cursor-pointer bg-slate-600"></li>
-        </ul>
+        <div className="absolute right-8 xl:right-24 bottom-[10%]">
+          <ul className="flex gap-1">
+            <li className="h-1 w-6 cursor-pointer xl:w-8 bg-slate-100"></li>
+            <li className="h-1 w-6 cursor-pointer xl:w-8 bg-slate-600"></li>
+            <li className="h-1 w-6 cursor-pointer xl:w-8 bg-slate-600"></li>
+            <li className="h-1 w-6 cursor-pointer xl:w-8 bg-slate-600"></li>
+          </ul>
+        </div>
       </div>
     </div>
   );

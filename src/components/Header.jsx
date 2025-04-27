@@ -12,24 +12,34 @@ const Header = () => {
         setIsScrolled(false);
       }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    <header className={`flex items-center justify-between bg-slate-950 px-8 text-white fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? "h-14 py-2 bg-black/80 backdrop-blur-sm shadow-lg" : "h-18 py-4"
-    }`}>
+    <header
+      className={`fixed top-0 right-0 left-0 z-50 flex items-center justify-between bg-slate-950 px-8 text-white transition-all duration-300 ${
+        isScrolled
+          ? "h-14 bg-black/80 py-2 shadow-lg backdrop-blur-sm"
+          : "h-18 py-4"
+      }`}
+    >
       <div className="flex items-center gap-4">
-        <img
-          src="./netflix-logo.png"
-          alt="Netflix Logo"
-          className={`transition-all duration-300 ${isScrolled ? "w-14 sm:w-20" : "w-16 sm:w-28"}`}
-        />
-        <a href="#" className="hover:text-gray-300 transition">Phim</a>
-        <a href="#" className="hover:text-gray-300 transition">Truyền hình</a>
+        <a href="#">
+          <img
+            src="./netflix-logo.png"
+            alt="Netflix Logo"
+            className={`transition-all duration-300 ${isScrolled ? "w-14 sm:w-20" : "w-16 sm:w-28"}`}
+          />
+        </a>
+        <a href="#" className="transition hover:text-gray-300">
+          Phim
+        </a>
+        <a href="#" className="transition hover:text-gray-300">
+          Truyền hình
+        </a>
       </div>
       <div>
         <FaMagnifyingGlass className="cursor-pointer" />

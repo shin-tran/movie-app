@@ -35,7 +35,7 @@ const MediaList = ({ title, tabs }) => {
             return (
               <li
                 key={tab.id}
-                className={`cursor-pointer rounded ${tab.id === activeTabId ? "bg-white text-black" : ""} px-2 py-1`}
+                className={`cursor-pointer rounded ${tab.id === activeTabId ? "bg-white text-black" : null} px-2 py-1`}
                 onClick={() => {
                   setActiveTabId(tab.id);
                 }}

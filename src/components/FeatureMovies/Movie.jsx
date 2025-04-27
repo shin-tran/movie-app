@@ -14,7 +14,7 @@ const Movie = (props) => {
     <>
       <img
         src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
-        className="aspect-video brightness-50"
+        className="aspect-video brightness-50 w-full"
         loading="lazy"
       />
       <div className="absolute bottom-[10%] left-8 w-1/2 sm:w-1/3">

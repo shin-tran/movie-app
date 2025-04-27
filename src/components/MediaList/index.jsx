@@ -55,7 +55,7 @@ const MediaList = ({ title, tabs }) => {
               releaseDate={media.release_date || media.first_air_date}
               poster={media.poster_path}
               point={media.vote_average}
-              mediaType={media.media_type}
+              mediaType={media.media_type || activeTabId}
             />
           );
         })}

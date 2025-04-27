@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 
-const TABS = [
-  { id: "all", name: "All" },
-  { id: "movie", name: "Movies" },
-  { id: "tv", name: "TV Show" },
-];
-
-const MediaList = () => {
+const MediaList = ({ title, tabs }) => {
   const [mediaList, setMediaList] = useState([]);
-  const [activeTabId, setActiveTabId] = useState(TABS[0].id);
+  const [activeTabId, setActiveTabId] = useState(tabs[0]?.id);
 
   useEffect(() => {
-    const url = `https://api.themoviedb.org/3/trending/${activeTabId}/day`;
+    const url = tabs.find(tab => tab.id === activeTabId)?.url;
     const options = {
       method: "GET",
       headers: {
@@ -21,21 +15,23 @@ const MediaList = () => {
       },
     };
 
-    fetch(url, options)
+    if (url) {
+      fetch(url, options)
       .then(async (res) => {
         const data = await res.json();
         const trendingMediaList = data.results.slice(0, 12);
         setMediaList(trendingMediaList);
       })
       .catch((err) => console.error(err));
-  }, [activeTabId]);
+    }
+  }, [tabs, activeTabId]);
 
   return (
     <div className="bg-black px-8 py-10 text-[1.2vw] text-white">
       <div className="mb-6 flex items-center gap-4">
-        <p className="text-[2vw] font-bold">Trending</p>
+        <p className="text-[2vw] font-bold">{title}</p>
         <ul className="flex rounded border border-white px-3 py-1">
-          {TABS.map((tab) => {
+          {tabs.map((tab) => {
             return (
               <li
                 key={tab.id}

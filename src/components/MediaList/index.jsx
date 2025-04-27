@@ -6,7 +6,7 @@ const MediaList = ({ title, tabs }) => {
   const [activeTabId, setActiveTabId] = useState(tabs[0]?.id);
 
   useEffect(() => {
-    const url = tabs.find(tab => tab.id === activeTabId)?.url;
+    const url = tabs.find((tab) => tab.id === activeTabId)?.url;
     const options = {
       method: "GET",
       headers: {
@@ -17,12 +17,12 @@ const MediaList = ({ title, tabs }) => {
 
     if (url) {
       fetch(url, options)
-      .then(async (res) => {
-        const data = await res.json();
-        const trendingMediaList = data.results.slice(0, 12);
-        setMediaList(trendingMediaList);
-      })
-      .catch((err) => console.error(err));
+        .then(async (res) => {
+          const data = await res.json();
+          const trendingMediaList = data.results.slice(0, 12);
+          setMediaList(trendingMediaList);
+        })
+        .catch((err) => console.error(err));
     }
   }, [tabs, activeTabId]);
 

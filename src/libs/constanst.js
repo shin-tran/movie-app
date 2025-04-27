@@ -27,4 +27,4 @@ export const TOP_RATED_TABS = [
     name: "TV Show",
     url: "https://api.themoviedb.org/3/tv/top_rated",
   },
-]
+];

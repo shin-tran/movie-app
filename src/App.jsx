@@ -1,7 +1,7 @@
 import FeatureMovies from "./components/FeatureMovies";
 import Header from "./components/Header";
 import MediaList from "./components/MediaList";
-import { TRENDING_TABS } from "./libs/constanst";
+import { TOP_RATED_TABS, TRENDING_TABS } from "./libs/constanst";
 
 function App() {
   return (
@@ -9,6 +9,7 @@ function App() {
       <Header />
       <FeatureMovies />
       <MediaList title={"Trending"} tabs={TRENDING_TABS} />
+      <MediaList title={"Top Rated"} tabs={TOP_RATED_TABS} />
     </div>
   );
 }

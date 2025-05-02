@@ -4,12 +4,12 @@ import CircularProgressBar from "../components/CircularProgressBar";
 
 const MovieDetail = () => {
   return (
-    <div className="relative text-white">
+    <div className="relative text-white overflow-hidden">
       <img
         className="absolute inset-0 brightness-[0.2]"
         src="https://image.tmdb.org/t/p/original/65MVgDa6YjSdqzh7YOA04mYkioo.jpg"
       />
-      <div className="relative mx-auto flex max-w-xl gap-6 p-6">
+      <div className="relative mx-auto flex max-w-xl gap-6 lg:gap-8 px-6 py-10">
         <div className="flex-1">
           <img src="https://image.tmdb.org/t/p/w500/hqcexYHbiTBfDIdDWxrxPtVndBX.jpg" />
         </div>
@@ -25,20 +25,20 @@ const MovieDetail = () => {
               <CircularProgressBar persent={90} size={3.5} strokeWidth={0.3} />
             </div>
             <button>
-              <FaPlay className="inline-block" /> Trailer
+              <FaPlay className="inline-block mr-1" /> Trailer
             </button>
           </div>
-          <div>
-            <p>Overview</p>
+          <div className="mt-4">
+            <p className="font-bold text-[1.3vw] mb-2">Overview</p>
             <p>Afte...</p>
           </div>
-          <div>
+          <div className="grid grid-cols-2 gap-2 mt-4">
             <div>
-              <p>Director</p>
+              <p className="font-bold">Director</p>
               <p>Jennifer Phang</p>
             </div>
             <div>
-              <p>Writer</p>
+              <p className="font-bold">Writer</p>
               <p>Jennifer Phang</p>
             </div>
           </div>

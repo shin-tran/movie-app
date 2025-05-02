@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa6";
 import CircularProgressBar from "../components/CircularProgressBar";
 import { useParams } from "react-router";
+import { Md3P } from "react-icons/md";
+import { groupBy } from "lodash";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -9,7 +11,7 @@ const MovieDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const url = `https://api.themoviedb.org/3/movie/${id}?append_to_response=release_dates`;
+    const url = `https://api.themoviedb.org/3/movie/${id}?append_to_response=release_dates,credits`;
     const options = {
       method: "GET",
       headers: {
@@ -28,6 +30,8 @@ const MovieDetail = () => {
       .finally(() => setLoading(false));
   }, [id]);
 
+  console.log(movieInfo);
+
   if (loading || !movieInfo) {
     return (
       <div className="flex h-screen items-center justify-center text-white">
@@ -41,6 +45,12 @@ const MovieDetail = () => {
       (result) => result.iso_3166_1 == "US",
     )?.release_dates || []
   ).find((releaseDate) => releaseDate.certification)?.certification;
+
+  const crews = (movieInfo.credits?.crew || [])
+    .filter((crew) => ["Director", "Screenplay", "Writer"].includes(crew.job))
+    .map((crew) => ({ id: crew.id, job: crew.job, name: crew.name }));
+
+  const groupedCrews = groupBy(crews, "job");
 
   return (
     <div className="relative overflow-hidden text-white">
@@ -90,14 +100,12 @@ const MovieDetail = () => {
             </div>
           )}
           <div className="mt-4 grid grid-cols-2 gap-2">
-            <div>
-              <p className="font-bold">Director</p>
-              <p>Jennifer Phang</p>
-            </div>
-            <div>
-              <p className="font-bold">Writer</p>
-              <p>Jennifer Phang</p>
-            </div>
+            {Object.keys(groupedCrews).map((job) => (
+              <div key={job}>
+                <p className="font-bold">{job}</p>
+                <p>{groupedCrews[job].map((crew) => crew.name).join(", ")}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

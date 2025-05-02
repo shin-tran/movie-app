@@ -5,7 +5,7 @@ import { useParams } from "react-router";
 
 const MovieDetail = () => {
   const { id } = useParams();
-  const [movieInfo, setSetMovieInfo] = useState();
+  const [movieInfo, setMovieInfo] = useState();
 
   useEffect(() => {
     const url = `https://api.themoviedb.org/3/movie/${id}?append_to_response=release_dates`;
@@ -20,7 +20,7 @@ const MovieDetail = () => {
     fetch(url, options)
       .then(async (res) => {
         const data = await res.json();
-        setSetMovieInfo(data);
+        setMovieInfo(data);
       })
       .catch((err) => console.error(err));
   }, [id]);

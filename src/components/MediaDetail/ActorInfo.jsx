@@ -1,13 +1,18 @@
 import React from "react";
 
-const ActorInfo = () => {
+const ActorInfo = ({ id, name, character, profilePath }) => {
   return (
     <div className="overflow-hidden rounded-lg border border-slate-300 bg-black text-white shadow-sm">
-      <img src="https://ntvb.tmsimg.com/assets/assets/82021_v9_ba.jpg?w=360&h=480" />
-      <div>
-        <p>matt letscher</p>
-        <p>Lorem, ipsum dolor.</p>
-        <p>18</p>
+      <img
+        src={
+          profilePath
+            ? `https://image.tmdb.org/t/p/w276_and_h350_face${profilePath}`
+            : `/ActorNoImage.svg`
+        }
+      />
+      <div className="p-3">
+        {name && <p className="font-bold">{name}</p>}
+        {character && <p>{character}</p>}
       </div>
     </div>
   );

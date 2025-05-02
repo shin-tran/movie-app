@@ -53,7 +53,7 @@ const MovieDetail = () => {
   const groupedCrews = groupBy(crews, "job");
 
   return (
-    <div className="relative overflow-hidden text-white">
+    <div className="relative overflow-hidden text-white mt-[70px]">
       {movieInfo.backdrop_path && (
         <img
           className="absolute inset-0 brightness-[0.2]"

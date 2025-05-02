@@ -1,42 +1,15 @@
 import React from "react";
+import ActorInfo from "./ActorInfo";
 
 const ActorList = () => {
   return (
     <div>
-      <p>Actors</p>
-      <div className="grid grid-cols-3 sm:grid-cols-4">
-        <div>
-          <img src="https://ntvb.tmsimg.com/assets/assets/82021_v9_ba.jpg?w=360&h=480" />
-          <div>
-            <p>matt letscher</p>
-            <p>Lorem, ipsum dolor.</p>
-            <p>18</p>
-          </div>
-        </div>
-        <div>
-          <img src="https://ntvb.tmsimg.com/assets/assets/82021_v9_ba.jpg?w=360&h=480" />
-          <div>
-            <p>matt letscher</p>
-            <p>Lorem, ipsum dolor.</p>
-            <p>18</p>
-          </div>
-        </div>
-        <div>
-          <img src="https://ntvb.tmsimg.com/assets/assets/82021_v9_ba.jpg?w=360&h=480" />
-          <div>
-            <p>matt letscher</p>
-            <p>Lorem, ipsum dolor.</p>
-            <p>18</p>
-          </div>
-        </div>
-        <div>
-          <img src="https://ntvb.tmsimg.com/assets/assets/82021_v9_ba.jpg?w=360&h=480" />
-          <div>
-            <p>matt letscher</p>
-            <p>Lorem, ipsum dolor.</p>
-            <p>18</p>
-          </div>
-        </div>
+      <p className="mb-4 text-[1.4vw] font-bold">Actors</p>
+      <div className="grid grid-cols-3 gap-4 sm:grid-cols-4">
+        <ActorInfo />
+        <ActorInfo />
+        <ActorInfo />
+        <ActorInfo />
       </div>
     </div>
   );

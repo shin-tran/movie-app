@@ -17,14 +17,14 @@ const Banner = ({ mediaInfo }) => {
   const groupedCrews = groupBy(crews, "job");
 
   return (
-    <div className="relative mt-[70px] overflow-hidden text-white">
+    <div className="relative overflow-hidden pt-16 text-white">
       {mediaInfo.backdrop_path && (
         <img
           className="absolute inset-0 w-full brightness-[0.2]"
           src={`https://image.tmdb.org/t/p/original${mediaInfo.backdrop_path}`}
         />
       )}
-      <div className="relative mx-auto flex max-w-5xl gap-6 px-6 py-10 lg:gap-8">
+      <div className="relative mx-auto flex max-w-screen-xl gap-6 px-6 py-10 lg:gap-8">
         <div className="flex-1">
           {mediaInfo.poster_path && (
             <img

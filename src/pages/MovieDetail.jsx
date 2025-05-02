@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa6";
 import CircularProgressBar from "../components/CircularProgressBar";
 import { useParams } from "react-router";
-import { Md3P } from "react-icons/md";
 import { groupBy } from "lodash";
+import Loading from "../components/Loading";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -20,7 +20,6 @@ const MovieDetail = () => {
       },
     };
 
-    setLoading(true);
     fetch(url, options)
       .then(async (res) => {
         const data = await res.json();
@@ -30,14 +29,8 @@ const MovieDetail = () => {
       .finally(() => setLoading(false));
   }, [id]);
 
-  console.log(movieInfo);
-
-  if (loading || !movieInfo) {
-    return (
-      <div className="flex h-screen items-center justify-center text-white">
-        Loading...
-      </div>
-    );
+  if (loading) {
+    return <Loading />
   }
 
   const certification = (
@@ -53,7 +46,7 @@ const MovieDetail = () => {
   const groupedCrews = groupBy(crews, "job");
 
   return (
-    <div className="relative overflow-hidden text-white mt-[70px]">
+    <div className="relative mt-[70px] overflow-hidden text-white">
       {movieInfo.backdrop_path && (
         <img
           className="absolute inset-0 w-full brightness-[0.2]"

@@ -1,23 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa6";
 import CircularProgressBar from "../components/CircularProgressBar";
+import { useParams } from "react-router";
 
 const MovieDetail = () => {
+  const { id } = useParams();
+  const [movieInfo, setSetMovieInfo] = useState();
+
+  useEffect(() => {
+    const url = `https://api.themoviedb.org/3/movie/${id}?append_to_response=release_dates`;
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${import.meta.env.VITE_MOVIE_DB_API_ACCESS_TOKEN}`,
+      },
+    };
+
+    fetch(url, options)
+      .then(async (res) => {
+        const data = await res.json();
+        setSetMovieInfo(data);
+      })
+      .catch((err) => console.error(err));
+  }, [id]);
+
+  const certification = (
+    (movieInfo.release_dates?.results || []).find(
+      (result) => result.iso_3166_1 == "US",
+    )?.release_dates || []
+  ).find((releaseDate) => releaseDate.certification)?.certification;
+
   return (
-    <div className="relative text-white overflow-hidden">
+    <div className="relative overflow-hidden text-white">
       <img
         className="absolute inset-0 brightness-[0.2]"
-        src="https://image.tmdb.org/t/p/original/65MVgDa6YjSdqzh7YOA04mYkioo.jpg"
+        src={`https://image.tmdb.org/t/p/original${movieInfo.backdrop_path}`}
       />
-      <div className="relative mx-auto flex max-w-xl gap-6 lg:gap-8 px-6 py-10">
+      <div className="relative mx-auto flex max-w-5xl gap-6 px-6 py-10 lg:gap-8">
         <div className="flex-1">
-          <img src="https://image.tmdb.org/t/p/w500/hqcexYHbiTBfDIdDWxrxPtVndBX.jpg" />
+          <img
+            src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movieInfo.poster_path}`}
+          />
         </div>
         <div className="flex-[2] text-[1.2vw]">
-          <p className="mb-2 text-[2vw] font-bold">Test</p>
+          <p className="mb-2 text-[2vw] font-bold">{movieInfo.title}</p>
           <div className="flex items-center gap-4">
-            <span className="border border-gray-400 p-1 text-gray-400">G</span>
-            <p>2024/11/11</p>
+            <span className="border border-gray-400 p-1 text-gray-400">
+              {certification}
+            </span>
+            <p>{movieInfo.release_date}</p>
             <p>Fantasy, Adventure</p>
           </div>
           <div className="mt-4 flex items-center gap-4">
@@ -25,14 +57,14 @@ const MovieDetail = () => {
               <CircularProgressBar persent={90} size={3.5} strokeWidth={0.3} />
             </div>
             <button>
-              <FaPlay className="inline-block mr-1" /> Trailer
+              <FaPlay className="mr-1 inline-block" /> Trailer
             </button>
           </div>
           <div className="mt-4">
-            <p className="font-bold text-[1.3vw] mb-2">Overview</p>
-            <p>Afte...</p>
+            <p className="mb-2 text-[1.3vw] font-bold">Overview</p>
+            <p>{movieInfo.overview}</p>
           </div>
-          <div className="grid grid-cols-2 gap-2 mt-4">
+          <div className="mt-4 grid grid-cols-2 gap-2">
             <div>
               <p className="font-bold">Director</p>
               <p>Jennifer Phang</p>

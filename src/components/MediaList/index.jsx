@@ -50,6 +50,7 @@ const MediaList = ({ title, tabs }) => {
         {mediaList.map((media) => {
           return (
             <MovieCard
+              id={media.id}
               key={media.id}
               title={media.title || media.name}
               releaseDate={media.release_date || media.first_air_date}

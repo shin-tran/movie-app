@@ -28,7 +28,7 @@ const Header = () => {
       }`}
     >
       <div className="flex items-center gap-4">
-        <Link href="/">
+        <Link to="/">
           <img
             src="/netflix-logo.png"
             alt="Netflix Logo"

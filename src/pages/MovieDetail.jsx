@@ -56,7 +56,7 @@ const MovieDetail = () => {
     <div className="relative overflow-hidden text-white mt-[70px]">
       {movieInfo.backdrop_path && (
         <img
-          className="absolute inset-0 brightness-[0.2]"
+          className="absolute inset-0 w-full brightness-[0.2]"
           src={`https://image.tmdb.org/t/p/original${movieInfo.backdrop_path}`}
         />
       )}

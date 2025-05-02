@@ -1,5 +1,6 @@
 import React from "react";
 import { FaPlay } from "react-icons/fa6";
+import CircularProgressBar from "../components/CircularProgressBar";
 
 const MovieDetail = () => {
   return (
@@ -14,13 +15,15 @@ const MovieDetail = () => {
         </div>
         <div className="flex-[2] text-[1.2vw]">
           <p className="mb-2 text-[2vw] font-bold">Test</p>
-          <div className="flex gap-4 items-center">
+          <div className="flex items-center gap-4">
             <span className="border border-gray-400 p-1 text-gray-400">G</span>
             <p>2024/11/11</p>
             <p>Fantasy, Adventure</p>
           </div>
-          <div>
-            <div>73 rating</div>
+          <div className="mt-4 flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <CircularProgressBar persent={90} size={3.5} strokeWidth={0.3} />
+            </div>
             <button>
               <FaPlay className="inline-block" /> Trailer
             </button>

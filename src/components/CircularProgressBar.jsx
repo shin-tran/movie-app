@@ -1,6 +1,6 @@
 import React from "react";
 
-const CircularProgressBar = ({ persent, size, strokeWidth, strokeColor }) => {
+const CircularProgressBar = ({ persent, size, strokeWidth, strokeColor = "green" }) => {
   const radius = size / 2 - strokeWidth;
   const perimeter = 2 * Math.PI * radius;
   return (

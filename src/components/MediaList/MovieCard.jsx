@@ -22,7 +22,9 @@ const MovieCard = ({ id, title, releaseDate, poster, point, mediaType }) => {
             strokeWidth={0.25}
             strokeColor={point >= 7 ? "green" : point >= 5 ? "yellow" : "red"}
           />
-          <p className="mt-2-300 font-bold">{title}</p>
+          <p className="mt-2-300 overflow-hidden font-bold text-ellipsis whitespace-nowrap">
+            {title}
+          </p>
           <p>{releaseDate}</p>
         </div>
       </div>

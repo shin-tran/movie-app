@@ -1,5 +1,3 @@
-import React from "react";
-
 const PaginateIndicator = ({ movies, activeMovieId, setActiveMovieId }) => {
   return (
     <div className="absolute right-8 bottom-[10%] xl:right-24">

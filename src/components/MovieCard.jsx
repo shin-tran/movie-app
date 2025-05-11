@@ -4,8 +4,8 @@ import CircularProgressBar from "./CircularProgressBar";
 
 const MovieCard = ({ id, title, releaseDate, poster, point, mediaType }) => {
   return (
-    <Link to={`/movie/${id}`}>
-      <div className="relative rounded-lg border border-slate-800">
+    <Link to={`/movie/${id}`} className="rounded-lg border border-slate-800">
+      <div className="relative">
         {mediaType === "tv" && (
           <p className="absolute top-1 right-1 rounded bg-black p-1 text-sm font-bold text-white shadow-md">
             TV Show

@@ -17,7 +17,7 @@ const Banner = ({ mediaInfo }) => {
   const groupedCrews = groupBy(crews, "job");
 
   return (
-    <div className="relative overflow-hidden pt-16 text-white">
+    <div className="relative overflow-hidden pt-16 text-white shadow-sm shadow-slate-800">
       {mediaInfo.backdrop_path && (
         <img
           className="absolute inset-0 w-full brightness-[0.2]"

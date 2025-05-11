@@ -1,6 +1,6 @@
 import React from "react";
-import CircularProgressBar from "../CircularProgressBar";
 import { Link } from "react-router";
+import CircularProgressBar from "./CircularProgressBar";
 
 const MovieCard = ({ id, title, releaseDate, poster, point, mediaType }) => {
   return (

@@ -33,12 +33,12 @@ const FeatureMovies = () => {
     if (movieIndex > lastMovie) setMovieIndex(0);
   }, [movies, movieIndex]);
 
-  useEffect(() => {
-    let movieSlider = setInterval(() => {
-      setMovieIndex(movieIndex + 1);
-    }, 5000);
-    return () => clearInterval(movieSlider);
-  }, [movieIndex]);
+  // useEffect(() => {
+  //   let movieSlider = setInterval(() => {
+  //     setMovieIndex(movieIndex + 1);
+  //   }, 5000);
+  //   return () => clearInterval(movieSlider);
+  // }, [movieIndex]);
 
   useEffect(() => {
     if (

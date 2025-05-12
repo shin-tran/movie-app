@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import Banner from "@components/MediaDetail/Banner";
 import ActorList from "@components/MediaDetail/ActorList";
 import RelatedMediaList from "@components/MediaDetail/RelatedMediaList";
+import MovieInfomation from "@components/FeatureMovies/MovieInfomation";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -51,7 +52,7 @@ const MovieDetail = () => {
       .finally(() => setIsRelatedMovieListLoading(false));
   }, [id]);
 
-  if (isLoading) {
+  if (isLoading && isRelatedMovieListLoading) {
     return (
       <div className="flex h-screen flex-col items-center justify-center bg-black text-white">
         <span className="size-8 animate-spin rounded-full border-4 border-slate-900 border-t-slate-200"></span>
@@ -63,13 +64,13 @@ const MovieDetail = () => {
     <>
       <Banner mediaInfo={movieInfo} />
       <div className="bg-black text-[1.2vw] text-white xl:text-[0.9vw]">
-        <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10">
+        <div className="mx-auto flex max-w-screen-xl gap-6 sm:gap-8 px-6 py-10">
           <div className="flex-[2]">
             <ActorList actors={movieInfo.credits?.cast || []} />
             <RelatedMediaList mediaList={relatedMovies} />
           </div>
           <div className="flex-1">
-            <p className="mb-4 text-[1.4vw] font-bold">Information</p>
+            <MovieInfomation movieInfo={movieInfo} />
           </div>
         </div>
       </div>

@@ -4,33 +4,17 @@ import Banner from "@components/MediaDetail/Banner";
 import ActorList from "@components/MediaDetail/ActorList";
 import RelatedMediaList from "@components/MediaDetail/RelatedMediaList";
 import MovieInfomation from "@components/FeatureMovies/MovieInfomation";
+import useFetch from "@hooks/useFetch";
 
 const MovieDetail = () => {
   const { id } = useParams();
-  const [movieInfo, setMovieInfo] = useState({});
   const [relatedMovies, setRelatedMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [isRelatedMovieListLoading, setIsRelatedMovieListLoading] =
     useState(true);
 
-  useEffect(() => {
-    const url = `https://api.themoviedb.org/3/movie/${id}?append_to_response=release_dates,credits`;
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${import.meta.env.VITE_MOVIE_DB_API_ACCESS_TOKEN}`,
-      },
-    };
-
-    fetch(url, options)
-      .then(async (res) => {
-        const data = await res.json();
-        setMovieInfo(data);
-      })
-      .catch((err) => console.error(err))
-      .finally(() => setIsLoading(false));
-  }, [id]);
+  const { data: movieInfo, isLoading } = useFetch({
+    url: `/movie/${id}?append_to_response=release_dates,credits`,
+  });
 
   useEffect(() => {
     const url = `https://api.themoviedb.org/3/movie/${id}/recommendations`;
@@ -64,7 +48,7 @@ const MovieDetail = () => {
     <>
       <Banner mediaInfo={movieInfo} />
       <div className="bg-black text-[1.2vw] text-white xl:text-[0.9vw]">
-        <div className="mx-auto flex max-w-screen-xl gap-6 sm:gap-8 px-6 py-10">
+        <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8">
           <div className="flex-[2]">
             <ActorList actors={movieInfo.credits?.cast || []} />
             <RelatedMediaList mediaList={relatedMovies} />

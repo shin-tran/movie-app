@@ -1,31 +1,19 @@
 import React, { useEffect, useState } from "react";
 import PaginateIndicator from "./PaginateIndicator";
 import Movie from "./Movie";
+import useFetch from "@hooks/useFetch";
 
 const FeatureMovies = () => {
-  const [movies, setMovies] = useState([]);
   const [movieIndex, setMovieIndex] = useState(null);
   const [activeMovieId, setActiveMovieId] = useState(null);
+  const { data: popularMoviesResponse } = useFetch({ url: "/movie/popular" });
+  const movies = (popularMoviesResponse.results || []).slice(0, 4);
 
   useEffect(() => {
-    fetch("https://api.themoviedb.org/3/movie/popular", {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${import.meta.env.VITE_MOVIE_DB_API_ACCESS_TOKEN}`,
-      },
-    })
-      .then(async (res) => {
-        const data = await res.json();
-        const popularMovies = data.results.slice(0, 4);
-        setMovies(popularMovies);
-        setMovieIndex(0);
-        setActiveMovieId(popularMovies[0].id);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    if (movies.length > 0) {
+      setActiveMovieId(movies[0].id);
+    }
+  }, [movies]);
 
   useEffect(() => {
     const lastMovie = movies.length - 1;

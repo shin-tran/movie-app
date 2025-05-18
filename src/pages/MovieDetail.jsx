@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Banner from "@components/MediaDetail/Banner";
 import ActorList from "@components/MediaDetail/ActorList";
@@ -8,35 +7,19 @@ import useFetch from "@hooks/useFetch";
 
 const MovieDetail = () => {
   const { id } = useParams();
-  const [relatedMovies, setRelatedMovies] = useState([]);
-  const [isRelatedMovieListLoading, setIsRelatedMovieListLoading] =
-    useState(true);
 
   const { data: movieInfo, isLoading } = useFetch({
     url: `/movie/${id}?append_to_response=release_dates,credits`,
   });
 
-  useEffect(() => {
-    const url = `https://api.themoviedb.org/3/movie/${id}/recommendations`;
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${import.meta.env.VITE_MOVIE_DB_API_ACCESS_TOKEN}`,
-      },
-    };
+  const { data: recommandationsResponse, isLoading: isRelatedMoviesLoading } =
+    useFetch({
+      url: `/movie/${id}/recommendations`,
+    });
 
-    fetch(url, options)
-      .then(async (res) => {
-        const data = await res.json();
-        const currRelatedMovies = (data.results || []).slice(0, 12);
-        setRelatedMovies(currRelatedMovies);
-      })
-      .catch((err) => console.error(err))
-      .finally(() => setIsRelatedMovieListLoading(false));
-  }, [id]);
+  const relatedMovies = recommandationsResponse.results || [];
 
-  if (isLoading && isRelatedMovieListLoading) {
+  if (isLoading) {
     return (
       <div className="flex h-screen flex-col items-center justify-center bg-black text-white">
         <span className="size-8 animate-spin rounded-full border-4 border-slate-900 border-t-slate-200"></span>
@@ -51,7 +34,10 @@ const MovieDetail = () => {
         <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8">
           <div className="flex-[2]">
             <ActorList actors={movieInfo.credits?.cast || []} />
-            <RelatedMediaList mediaList={relatedMovies} />
+            <RelatedMediaList
+              mediaList={relatedMovies}
+              isLoading={isRelatedMoviesLoading}
+            />
           </div>
           <div className="flex-1">
             <MovieInfomation movieInfo={movieInfo} />

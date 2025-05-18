@@ -9,6 +9,8 @@ const ActorInfo = ({ id, name, character, profilePath }) => {
             ? `https://image.tmdb.org/t/p/w276_and_h350_face${profilePath}`
             : `/ActorNoImage.svg`
         }
+        width={276}
+        height={350}
       />
       <div className="p-3">
         {name && <p className="font-bold">{name}</p>}

@@ -29,6 +29,8 @@ const Banner = ({ mediaInfo }) => {
           {mediaInfo.poster_path && (
             <img
               src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${mediaInfo.poster_path}`}
+              width={600}
+              height={900}
             />
           )}
         </div>

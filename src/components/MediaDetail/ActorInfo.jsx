@@ -1,9 +1,10 @@
+import ImageComponent from "@components/Image";
 import React from "react";
 
-const ActorInfo = ({ id, name, character, profilePath }) => {
+const ActorInfo = ({ name, character, profilePath }) => {
   return (
     <div className="overflow-hidden rounded-lg border border-slate-300 bg-black text-white shadow-sm">
-      <img
+      <ImageComponent
         src={
           profilePath
             ? `https://image.tmdb.org/t/p/w276_and_h350_face${profilePath}`

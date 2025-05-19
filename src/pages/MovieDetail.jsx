@@ -4,6 +4,7 @@ import ActorList from "@components/MediaDetail/ActorList";
 import RelatedMediaList from "@components/MediaDetail/RelatedMediaList";
 import MovieInfomation from "@components/FeatureMovies/MovieInfomation";
 import useFetch from "@hooks/useFetch";
+import Loading from "@components/Loading";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -20,11 +21,7 @@ const MovieDetail = () => {
   const relatedMovies = recommandationsResponse.results || [];
 
   if (isLoading) {
-    return (
-      <div className="flex h-screen flex-col items-center justify-center bg-black text-white">
-        <span className="size-8 animate-spin rounded-full border-4 border-slate-900 border-t-slate-200"></span>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

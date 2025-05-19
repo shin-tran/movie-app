@@ -1,3 +1,4 @@
+import Loading from "@components/Loading";
 import MovieCard from "@components/MovieCard";
 
 const RelatedMediaList = ({ mediaList = [], isLoading }) => {

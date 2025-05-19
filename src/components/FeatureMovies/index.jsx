@@ -4,7 +4,7 @@ import Movie from "./Movie";
 import useFetch from "@hooks/useFetch";
 
 const FeatureMovies = () => {
-  const [movieIndex, setMovieIndex] = useState(null);
+  const [movieIndex, setMovieIndex] = useState(0);
   const [activeMovieId, setActiveMovieId] = useState(null);
   const { data: popularMoviesResponse } = useFetch({ url: "/movie/popular" });
   const movies = (popularMoviesResponse.results || []).slice(0, 4);

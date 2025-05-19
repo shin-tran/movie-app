@@ -1,10 +1,11 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
+import "@/index.css";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import HomePage from "./pages/HomePage.jsx";
-import MovieDetail from "./pages/MovieDetail.jsx";
-import RootLayout from "./pages/RootLayout.jsx";
+import HomePage from "@pages/HomePage.jsx";
+import MovieDetail from "@pages/MovieDetail.jsx";
+import RootLayout from "@pages/RootLayout.jsx";
+import TVShowDetail from "@pages/TVShowDetail";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <HomePage /> },
       { path: "/movie/:id", element: <MovieDetail /> },
+      { path: "/tv/:id", element: <TVShowDetail /> },
     ],
   },
 ]);

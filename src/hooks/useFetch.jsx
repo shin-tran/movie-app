@@ -26,6 +26,6 @@ export default function useFetch({ url = "", method = "GET", headers = {} }) {
       })
       .catch((err) => console.error(err))
       .finally(() => setIsLoading(false));
-  }, [url, method, headers]);
+  }, [url, method, JSON.stringify(headers)]);
   return { isLoading, data };
 }

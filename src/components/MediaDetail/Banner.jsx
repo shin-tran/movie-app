@@ -15,7 +15,6 @@ const Banner = ({
   point = 0,
   overview,
 }) => {
-
   const groupedCrews = groupBy(crews, "job");
 
   return (

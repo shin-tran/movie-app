@@ -7,13 +7,15 @@ const ImageComponent = ({ className, src, width, height }) => {
 
   useEffect(() => {
     const img = new Image();
-    img.src = src;
-    img.onload = () => {
-      setCurrentSrc(src);
-    };
-    return () => {
-      img.onload = null;
-    };
+    if (src) {
+      img.src = src;
+      img.onload = () => {
+        setCurrentSrc(src);
+      };
+      return () => {
+        img.onload = null;
+      };
+    }
   }, [src]);
 
   return (

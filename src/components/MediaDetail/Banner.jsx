@@ -15,6 +15,7 @@ const Banner = ({
   point = 0,
   overview,
 }) => {
+  if (!title) return null;
   const groupedCrews = groupBy(crews, "job");
 
   return (
@@ -23,6 +24,8 @@ const Banner = ({
         <ImageComponent
           className="absolute inset-0 aspect-video w-full brightness-[0.2]"
           src={`https://image.tmdb.org/t/p/original${backdropPath}`}
+          width={1200}
+          height={800}
         />
       )}
       <div className="relative mx-auto flex max-w-screen-xl gap-6 px-6 py-10 lg:gap-8">

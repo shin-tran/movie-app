@@ -15,7 +15,7 @@ const TVShowDetail = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const { data: tvInfo, isLoading } = useFetch({
-    url: `/tv/${id}?append_to_response=content_ratings,aggregate_credits`,
+    url: `/tv/${id}?append_to_response=content_ratings,aggregate_credits,videos`,
   });
 
   const { data: recommandationsResponse, isLoading: isRecommandationLoading } =
@@ -72,6 +72,10 @@ const TVShowDetail = () => {
         overview={tvInfo.overview}
         certification={certification}
         crews={crews}
+        trailerVideoKey={
+          (tvInfo.videos?.results || []).find((video) => video.type === "Trailer")
+            ?.key
+        }
       />
       <div className="bg-black text-[1.2vw] text-white xl:text-[0.9vw]">
         <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8">

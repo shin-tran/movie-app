@@ -1,8 +1,8 @@
 import { groupBy } from "lodash";
-import React from "react";
 import CircularProgressBar from "../CircularProgressBar";
 import { FaPlay } from "react-icons/fa";
 import ImageComponent from "@components/Image";
+import { useModalContext } from "@context/ModalProvider";
 
 const Banner = ({
   title,
@@ -14,7 +14,10 @@ const Banner = ({
   releaseDate,
   point = 0,
   overview,
+  trailerVideoKey,
 }) => {
+  const { setIsShowing, setContent } = useModalContext();
+
   if (!title) return null;
   const groupedCrews = groupBy(crews, "job");
 
@@ -57,7 +60,20 @@ const Banner = ({
                 strokeWidth={0.3}
               />
             </div>
-            <button>
+            <button
+              className="cursor-pointer rounded transition hover:text-gray-300"
+              onClick={() => {
+                console.log(trailerVideoKey);
+                setIsShowing(true);
+                setContent(
+                  <iframe
+                    className="aspect-video w-[50vw]"
+                    src={`https://www.youtube.com/embed/${trailerVideoKey}`}
+                    title="Trailer"
+                  />,
+                );
+              }}
+            >
               <FaPlay className="mr-1 inline-block" /> Trailer
             </button>
           </div>

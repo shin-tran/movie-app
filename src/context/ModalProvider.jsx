@@ -1,6 +1,10 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const ModalContext = createContext();
+
+export const useModalContext = () => {
+  return useContext(ModalContext);
+}
 
 const ModalProvider = ({ children }) => {
   const [isShowing, setIsShowing] = useState(false);

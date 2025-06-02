@@ -16,7 +16,7 @@ const Banner = ({
   overview,
   trailerVideoKey,
 }) => {
-  const { setIsShowing, setContent } = useModalContext();
+  const { openPopup } = useModalContext();
 
   if (!title) return null;
   const groupedCrews = groupBy(crews, "job");
@@ -63,8 +63,7 @@ const Banner = ({
             <button
               className="cursor-pointer rounded transition hover:text-gray-300"
               onClick={() => {
-                setIsShowing(true);
-                setContent(
+                openPopup(
                   <iframe
                     className="aspect-video w-[50vw]"
                     src={`https://www.youtube.com/embed/${trailerVideoKey}`}

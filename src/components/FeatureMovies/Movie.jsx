@@ -8,7 +8,7 @@ const Movie = (props) => {
     data: { id, backdrop_path, title, release_date, overview },
     trailerVideoKey,
   } = props;
-  const { setIsShowing, setContent } = useModalContext();
+  const { openPopup } = useModalContext();
 
   return (
     <>
@@ -36,8 +36,7 @@ const Movie = (props) => {
             <button
               className="text-2.5 xl:text-4.5 mr-2 cursor-pointer rounded bg-white px-4 py-2 text-black lg:text-lg"
               onClick={() => {
-                setIsShowing(true);
-                setContent(
+                openPopup(
                   <iframe
                     className="aspect-video w-[50vw]"
                     src={`https://www.youtube.com/embed/${trailerVideoKey}`}

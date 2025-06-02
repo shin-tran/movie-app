@@ -1,12 +1,23 @@
 import MovieCard from "@components/MovieCard";
 import useFetch from "@hooks/useFetch";
-import { useState } from "react";
+import { saveTabState, getTabState } from "@libs/utils";
+import { useState, useEffect } from "react";
 
 const MediaList = ({ title, tabs }) => {
-  const [activeTabId, setActiveTabId] = useState(tabs[0]?.id);
+  const tabSectionId = title.toLowerCase().replace(/\s+/g, "-");
+  const defaultTabId = tabs[0]?.id;
+
+  const [activeTabId, setActiveTabId] = useState(
+    getTabState(tabSectionId, defaultTabId),
+  );
+
   const url = tabs.find((tab) => tab.id === activeTabId)?.url;
   const { data } = useFetch({ url });
   const mediaList = (data.results || []).slice(0, 12);
+
+  useEffect(() => {
+    saveTabState(tabSectionId, activeTabId);
+  }, [activeTabId, tabSectionId]);
 
   return (
     <div className="bg-black px-8 py-10 text-[1.2vw] text-white">
@@ -16,13 +27,13 @@ const MediaList = ({ title, tabs }) => {
           {tabs.map((tab) => {
             return (
               <li
-              key={tab.id}
-              className={`cursor-pointer rounded px-2 py-1 ${tab.id === activeTabId && "bg-white text-black"}`}
-              onClick={() => {
-                setActiveTabId(tab.id);
-              }}
+                key={tab.id}
+                className={`cursor-pointer rounded px-2 py-1 ${tab.id === activeTabId && "bg-white text-black"}`}
+                onClick={() => {
+                  setActiveTabId(tab.id);
+                }}
               >
-              {tab.name}
+                {tab.name}
               </li>
             );
           })}

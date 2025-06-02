@@ -21,7 +21,7 @@ const Banner = ({
     <div className="relative overflow-hidden pt-16 text-white shadow-sm shadow-slate-800">
       {backdropPath && (
         <ImageComponent
-          className="absolute inset-0 w-full brightness-[0.2]"
+          className="absolute inset-0 aspect-video w-full brightness-[0.2]"
           src={`https://image.tmdb.org/t/p/original${backdropPath}`}
         />
       )}

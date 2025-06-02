@@ -2,7 +2,7 @@ import { useParams } from "react-router";
 import Banner from "@components/MediaDetail/Banner";
 import ActorList from "@components/MediaDetail/ActorList";
 import RelatedMediaList from "@components/MediaDetail/RelatedMediaList";
-import MovieInfomation from "@components/FeatureMovies/MovieInfomation";
+import MovieInfomation from "@components/MediaDetail/MovieInfomation";
 import useFetch from "@hooks/useFetch";
 import Loading from "@components/Loading";
 
@@ -32,6 +32,7 @@ const MovieDetail = () => {
 
   const crews = (movieInfo.credits?.crew || [])
     .filter((crew) => ["Director", "Screenplay", "Writer"].includes(crew.job))
+    .slice(0, 5)
     .map((crew) => ({ id: crew.id, job: crew.job, name: crew.name }));
 
   return (

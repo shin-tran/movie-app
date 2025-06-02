@@ -19,7 +19,7 @@ const CircularProgressBar = ({ persent, size, strokeWidth, strokeColor = "green"
           cy={`${size / 2}vw`}
           fill="none"
           stroke={strokeColor}
-          strokeWidth={5}
+          strokeWidth={7}
           strokeDasharray={`${perimeter}vw`}
           strokeDashoffset={`${perimeter - (persent / 100) * perimeter}vw`}
           transform="rotate(-90)"

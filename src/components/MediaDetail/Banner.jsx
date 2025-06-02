@@ -63,7 +63,6 @@ const Banner = ({
             <button
               className="cursor-pointer rounded transition hover:text-gray-300"
               onClick={() => {
-                console.log(trailerVideoKey);
                 setIsShowing(true);
                 setContent(
                   <iframe

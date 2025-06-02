@@ -1,21 +1,20 @@
 import ImageComponent from "@components/Image";
-import React from "react";
+import { useModalContext } from "@context/ModalProvider";
 import { FaPlay } from "react-icons/fa6";
+import { Link } from "react-router";
 
 const Movie = (props) => {
   const {
-    data: {
-      backdrop_path = "",
-      title = "",
-      release_date = "",
-      overview = "",
-    } = {},
+    data: { id, backdrop_path, title, release_date, overview },
+    trailerVideoKey,
   } = props;
+  const { setIsShowing, setContent } = useModalContext();
+
   return (
     <>
       <ImageComponent
         src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
-        className="aspect-video brightness-50 w-full"
+        className="aspect-video w-full brightness-50"
         loading="lazy"
         width={900}
         height={500}
@@ -34,13 +33,27 @@ const Movie = (props) => {
             <p>{overview}</p>
           </div>
           <div className="mt-4">
-            <button className="text-2.5 xl:text-4.5 mr-2 cursor-pointer rounded bg-white px-4 py-2 text-black lg:text-lg">
+            <button
+              className="text-2.5 xl:text-4.5 mr-2 cursor-pointer rounded bg-white px-4 py-2 text-black lg:text-lg"
+              onClick={() => {
+                setIsShowing(true);
+                setContent(
+                  <iframe
+                    className="aspect-video w-[50vw]"
+                    src={`https://www.youtube.com/embed/${trailerVideoKey}`}
+                    title="Trailer"
+                  />,
+                );
+              }}
+            >
               <FaPlay className="inline-block" />
               Trailer
             </button>
-            <button className="text-2.5 xl:text-4.5 cursor-pointer rounded bg-slate-300/35 px-4 py-2 lg:text-lg">
-              View Detail
-            </button>
+            <Link to={`/movie/${id}`}>
+              <button className="text-2.5 xl:text-4.5 cursor-pointer rounded bg-slate-300/35 px-4 py-2 lg:text-lg">
+                View Detail
+              </button>
+            </Link>
           </div>
         </div>
       </div>

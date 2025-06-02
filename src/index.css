@@ -39,10 +39,6 @@ body {
   font-family: "Netflix Sans", "sans-serif";
 }
 
-body::-webkit-scrollbar {
-  display: none;
-}
-
 @layer base {
   :root {
     --font-text: 0.25rem;

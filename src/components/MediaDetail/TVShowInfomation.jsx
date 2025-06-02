@@ -25,7 +25,12 @@ const TVShowInfomation = ({ tvInfo }) => {
         {(tvInfo.networks.slice(0, 5) || []).map((network) => {
           return (
             <img
-              className={`${network.name === "HBO" || network.name === "Nippon TV" ? "invert" : null}`}
+              className={
+                (network.name === "HBO" ||
+                  network.name === "Nippon TV" ||
+                  network.name === "Peacock") &&
+                "invert"
+              }
               key={network.id}
               src={`https://media.themoviedb.org/t/p/h30${network.logo_path}`}
             />

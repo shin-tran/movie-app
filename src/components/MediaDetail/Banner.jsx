@@ -18,7 +18,7 @@ const Banner = ({
   const groupedCrews = groupBy(crews, "job");
 
   return (
-    <div className="relative overflow-hidden pt-16 text-white shadow-sm shadow-slate-800">
+    <div className="relative overflow-hidden bg-black pt-16 text-white shadow-sm shadow-slate-800">
       {backdropPath && (
         <ImageComponent
           className="absolute inset-0 aspect-video w-full brightness-[0.2]"

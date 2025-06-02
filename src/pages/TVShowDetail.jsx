@@ -5,9 +5,14 @@ import RelatedMediaList from "@components/MediaDetail/RelatedMediaList";
 import useFetch from "@hooks/useFetch";
 import Loading from "@components/Loading";
 import TVShowInfomation from "@components/MediaDetail/TVShowInfomation";
+import SeasonsList from "@components/MediaDetail/SeasonsList";
+import { FaArrowUp } from "react-icons/fa6";
+import { useEffect, useState } from "react";
 
 const TVShowDetail = () => {
   const { id } = useParams();
+
+  const [isVisible, setIsVisible] = useState(false);
 
   const { data: tvInfo, isLoading } = useFetch({
     url: `/tv/${id}?append_to_response=content_ratings,aggregate_credits`,
@@ -17,6 +22,25 @@ const TVShowDetail = () => {
     useFetch({
       url: `/tv/${id}/recommendations`,
     });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        document.body.scrollTop > 100 ||
+        document.documentElement.scrollTop > 100
+      ) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const relatedTVShow = recommandationsResponse.results || [];
 
@@ -59,7 +83,7 @@ const TVShowDetail = () => {
                 episode_count: cast.roles[0]?.episode_count,
               }))}
             />
-
+            <SeasonsList seasons={[...(tvInfo.seasons || [])].reverse()} />
             <RelatedMediaList
               mediaList={relatedTVShow}
               isLoading={isRecommandationLoading}
@@ -70,6 +94,13 @@ const TVShowDetail = () => {
           </div>
         </div>
       </div>
+      <button
+        id="backToTopBtn"
+        className={`${isVisible ? "flex" : "hidden"} fixed right-6 bottom-6 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full text-white shadow-lg transition duration-300`}
+        onClick={() => window.scrollTo({ top: 0 })}
+      >
+        <FaArrowUp />
+      </button>
     </>
   );
 };

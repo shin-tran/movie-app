@@ -1,4 +1,6 @@
 const TVShowInfomation = ({ tvInfo }) => {
+  const networksToInvert = ["HBO", "Nippon TV", "Peacock"];
+
   return (
     <div>
       <p className="mb-4 text-[1.4vw] font-bold">Information</p>
@@ -26,10 +28,7 @@ const TVShowInfomation = ({ tvInfo }) => {
           return (
             <img
               className={
-                (network.name === "HBO" ||
-                  network.name === "Nippon TV" ||
-                  network.name === "Peacock") &&
-                "invert"
+                networksToInvert.includes(network.name) ? "invert" : undefined
               }
               key={network.id}
               src={`https://media.themoviedb.org/t/p/h30${network.logo_path}`}

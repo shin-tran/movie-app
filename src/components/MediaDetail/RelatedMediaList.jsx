@@ -1,7 +1,11 @@
 import Loading from "@components/Loading";
 import MovieCard from "@components/MovieCard";
 
-const RelatedMediaList = ({ mediaList = [], isLoading, title }) => {
+const RelatedMediaList = ({ mediaList, isLoading, title }) => {
+  const uniqueMediaList = mediaList.filter((media, index, self) =>
+    index === self.findIndex(m => m.id === media.id)
+  );
+
   return (
     <div className="mt-6">
       <p className="mb-4 text-[1.4vw] font-bold">{title}</p>
@@ -9,7 +13,7 @@ const RelatedMediaList = ({ mediaList = [], isLoading, title }) => {
         <Loading />
       ) : (
         <div className="grid grid-cols-3 gap-4 sm:grid-cols-4">
-          {mediaList.map((media) => (
+          {uniqueMediaList.map((media) => (
             <MovieCard
               key={media.id}
               id={media.id}

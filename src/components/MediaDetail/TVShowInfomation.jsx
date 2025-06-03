@@ -1,5 +1,5 @@
 const TVShowInfomation = ({ tvInfo }) => {
-  const networksToInvert = ["HBO", "Nippon TV", "Peacock"];
+  const networksToInvert = ["HBO", "Nippon TV", "Peacock", "CBS"];
 
   return (
     <div>

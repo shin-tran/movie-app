@@ -1,14 +1,9 @@
 import ImageComponent from "@components/Image";
+import Loading from "@components/Loading";
 import RelatedMediaList from "@components/MediaDetail/RelatedMediaList";
+import { GENDER_MAPPING } from "@libs/constanst";
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
-
-const GENDER_MAPPING = {
-  0: "Not set / not specified",
-  1: "Famale",
-  2: "Male",
-  3: "Non-binary",
-};
 
 const PeoplePage = () => {
   const peopleInfo = useLoaderData();
@@ -20,6 +15,10 @@ const PeoplePage = () => {
     }
   }, [peopleInfo]);
 
+  if (isDataLoading) {
+    return <Loading />;
+  }
+
   return (
     <>
       <div className="container text-[1.2vw] text-white">
@@ -27,16 +26,19 @@ const PeoplePage = () => {
           <div className="flex-1">
             <ImageComponent
               className={"mb-6"}
-              src={`https://media.themoviedb.org/t/p/w600_and_h900_bestv2${peopleInfo.profile_path}`}
+              src={
+                peopleInfo.profile_path &&
+                `https://media.themoviedb.org/t/p/w600_and_h900_bestv2${peopleInfo.profile_path}`
+              }
               width={600}
               height={900}
             />
             <div>
-              <p className="mb-6 text-[1.3vw] font-bold">Personal Info</p>
+              <p className="mb-5 text-[1.6vw] font-bold">Personal Info</p>
               <div className="space-y-4">
                 <div>
                   <p className="font-bold">Known For</p>
-                  <p>{peopleInfo.known_for_department}</p>
+                  <p>{peopleInfo.known_for_department || "Not set / not specified"}</p>
                 </div>
                 <div>
                   <p className="font-bold">Gender</p>
@@ -44,11 +46,11 @@ const PeoplePage = () => {
                 </div>
                 <div>
                   <p className="font-bold">Place of Birth</p>
-                  <p>{peopleInfo.place_of_birth}</p>
+                  <p>{peopleInfo.place_of_birth || "Not set / not specified"}</p>
                 </div>
                 <div>
                   <p className="font-bold">Birthday</p>
-                  <p>{peopleInfo.birthday}</p>
+                  <p>{peopleInfo.birthday || "Not set / not specified"}</p>
                 </div>
               </div>
             </div>
@@ -56,12 +58,11 @@ const PeoplePage = () => {
           <div className="flex-[2]">
             <div className="mb-6">
               <p className="mb-4 text-[1.4vw] font-bold">Biography</p>
-              <p className="whitespace-pre-line">{peopleInfo.biography}</p>
+              <p className="whitespace-pre-line">{peopleInfo.biography || "Not set / not specified"}</p>
             </div>
             <div>
               <RelatedMediaList
                 mediaList={peopleInfo.combined_credits?.cast || []}
-                isLoading={isDataLoading}
                 title={"Known For"}
               />
             </div>

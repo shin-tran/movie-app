@@ -26,7 +26,9 @@ const Banner = ({
       {backdropPath && (
         <ImageComponent
           className="absolute inset-0 aspect-video w-full brightness-[0.2]"
-          src={`https://image.tmdb.org/t/p/original${backdropPath}`}
+          src={
+            backdropPath && `https://image.tmdb.org/t/p/original${backdropPath}`
+          }
           width={1200}
           height={800}
         />
@@ -35,7 +37,10 @@ const Banner = ({
         <div className="flex-1">
           {posterPath && (
             <ImageComponent
-              src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${posterPath}`}
+              src={
+                posterPath &&
+                `https://image.tmdb.org/t/p/w600_and_h900_bestv2${posterPath}`
+              }
               width={600}
               height={900}
             />

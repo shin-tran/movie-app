@@ -32,7 +32,7 @@ const Header = () => {
           <img
             src="/netflix-logo.png"
             alt="Netflix Logo"
-            className={`transition-all duration-300 ${isScrolled ? "w-14 sm:w-20" : "w-16 sm:w-28"}`}
+            className={`object-cover transition-all duration-300 ${isScrolled ? "h-14 w-18 sm:w-20" : "h-18 w-20 sm:w-28"}`}
           />
         </Link>
         <a href="#" className="transition hover:text-gray-300">

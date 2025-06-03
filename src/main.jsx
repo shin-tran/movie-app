@@ -8,6 +8,7 @@ import RootLayout from "@pages/RootLayout.jsx";
 import TVShowDetail from "@pages/TVShowDetail";
 import ModalProvider from "@context/ModalProvider";
 import PeoplePage from "@pages/PeoplePage";
+import Loading from "@components/Loading";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
         element: <PeoplePage />,
         loader: async ({ params }) => {
           const res = await fetch(
-            `https://api.themoviedb.org/3/person/${params.id}`,
+            `https://api.themoviedb.org/3/person/${params.id}?append_to_response=combined_credits`,
             {
               headers: {
                 accept: "application/json",
@@ -29,8 +30,9 @@ const router = createBrowserRouter([
               },
             },
           );
-          return res;
+          return res.json();
         },
+        HydrateFallback: () => <Loading />,
       },
     ],
   },

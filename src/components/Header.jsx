@@ -36,10 +36,10 @@ const Header = () => {
           />
         </Link>
         <a href="#" className="transition hover:text-gray-300">
-          Phim
+          Movies
         </a>
         <a href="#" className="transition hover:text-gray-300">
-          Truyền hình
+          TV Shows
         </a>
       </div>
       <div>

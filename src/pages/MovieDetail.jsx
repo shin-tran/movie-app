@@ -1,7 +1,6 @@
 import { useParams } from "react-router";
 import Banner from "@components/MediaDetail/Banner";
 import ActorList from "@components/MediaDetail/ActorList";
-// import RelatedMediaList from "@components/MediaDetail/RelatedMediaList";
 import MovieInfomation from "@components/MediaDetail/MovieInfomation";
 import useFetch from "@hooks/useFetch";
 import Loading from "@components/Loading";

@@ -1,14 +1,15 @@
-import { StrictMode } from "react";
+import { lazy, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "@/index.css";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import HomePage from "@pages/HomePage.jsx";
-import MovieDetail from "@pages/MovieDetail.jsx";
-import RootLayout from "@pages/RootLayout.jsx";
-import TVShowDetail from "@pages/TVShowDetail";
 import ModalProvider from "@context/ModalProvider";
-import PeoplePage from "@pages/PeoplePage";
+import RootLayout from "@pages/RootLayout";
 import Loading from "@components/Loading";
+
+const HomePage = lazy(() => import("@pages/HomePage"));
+const MovieDetail = lazy(() => import("@pages/MovieDetail"));
+const TVShowDetail = lazy(() => import("@pages/TVShowDetail"));
+const PeoplePage = lazy(() => import("@pages/PeoplePage"));
 
 const router = createBrowserRouter([
   {

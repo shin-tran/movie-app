@@ -1,13 +1,16 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Header from "../components/Header";
 import { Outlet } from "react-router";
 import BackToTop from "@components/BackToTop";
+import Loading from "@components/Loading";
 
 const RootLayout = () => {
   return (
     <div className="bg-black">
       <Header />
-      <Outlet />
+      <Suspense fallback={<Loading />}>
+        <Outlet />
+      </Suspense>
       <BackToTop />
     </div>
   );

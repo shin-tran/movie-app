@@ -1,10 +1,15 @@
 import { useParams } from "react-router";
 import Banner from "@components/MediaDetail/Banner";
 import ActorList from "@components/MediaDetail/ActorList";
-import RelatedMediaList from "@components/MediaDetail/RelatedMediaList";
+// import RelatedMediaList from "@components/MediaDetail/RelatedMediaList";
 import MovieInfomation from "@components/MediaDetail/MovieInfomation";
 import useFetch from "@hooks/useFetch";
 import Loading from "@components/Loading";
+import { lazy, Suspense } from "react";
+
+const RelatedMediaList = lazy(
+  () => import("@components/MediaDetail/RelatedMediaList"),
+);
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -57,11 +62,13 @@ const MovieDetail = () => {
         <div className="container">
           <div className="flex-[2]">
             <ActorList actors={movieInfo.credits?.cast || []} />
-            <RelatedMediaList
-              mediaList={relatedMovies}
-              isLoading={isRelatedMoviesLoading}
-              title={"More Like This"}
-            />
+            <Suspense fallback={<Loading />}>
+              <RelatedMediaList
+                mediaList={relatedMovies}
+                isLoading={isRelatedMoviesLoading}
+                title={"More Like This"}
+              />
+            </Suspense>
           </div>
           <div className="flex-1">
             <MovieInfomation movieInfo={movieInfo} />

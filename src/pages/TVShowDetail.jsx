@@ -1,11 +1,15 @@
 import { useParams } from "react-router";
 import Banner from "@components/MediaDetail/Banner";
 import ActorList from "@components/MediaDetail/ActorList";
-import RelatedMediaList from "@components/MediaDetail/RelatedMediaList";
 import useFetch from "@hooks/useFetch";
 import Loading from "@components/Loading";
 import TVShowInfomation from "@components/MediaDetail/TVShowInfomation";
 import SeasonsList from "@components/MediaDetail/SeasonsList";
+import { lazy, Suspense } from "react";
+
+const RelatedMediaList = lazy(
+  () => import("@components/MediaDetail/RelatedMediaList"),
+);
 
 const TVShowDetail = () => {
   const { id } = useParams();
@@ -66,11 +70,13 @@ const TVShowDetail = () => {
               }))}
             />
             <SeasonsList seasons={[...(tvInfo.seasons || [])].reverse()} />
-            <RelatedMediaList
-              mediaList={relatedTVShow}
-              isLoading={isRecommandationLoading}
-              title={"More Like This"}
-            />
+            <Suspense fallback={<Loading />}>
+              <RelatedMediaList
+                mediaList={relatedTVShow}
+                isLoading={isRecommandationLoading}
+                title={"More Like This"}
+              />
+            </Suspense>
           </div>
           <div className="flex-1">
             <TVShowInfomation tvInfo={tvInfo} />

@@ -1,6 +1,6 @@
-const TVShowInfomation = ({ tvInfo }) => {
-  const networksToInvert = ["HBO", "Nippon TV", "Peacock", "CBS"];
+import { networksToInvert } from "@libs/constanst";
 
+const TVShowInfomation = ({ tvInfo }) => {
   return (
     <div>
       <p className="mb-4 text-[1.4vw] font-bold">Information</p>
@@ -26,16 +26,16 @@ const TVShowInfomation = ({ tvInfo }) => {
         <p className="font-bold">Network</p>
         <div className="space-y-4">
           {(tvInfo.networks.slice(0, 5) || []).map((network) => {
-          return (
-            <img
-              className={
-                networksToInvert.includes(network.name) ? "invert" : undefined
-              }
-              key={network.id}
-              src={`https://media.themoviedb.org/t/p/h30${network.logo_path}`}
-            />
-          );
-        })}
+            return (
+              <img
+                className={
+                  networksToInvert.includes(network.name) ? "invert" : undefined
+                }
+                key={network.id}
+                src={`https://media.themoviedb.org/t/p/h30${network.logo_path}`}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

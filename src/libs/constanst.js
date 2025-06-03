@@ -35,3 +35,11 @@ export const GENDER_MAPPING = {
   2: "Male",
   3: "Non-binary",
 };
+
+export const networksToInvert = [
+  "HBO",
+  "Nippon TV",
+  "Peacock",
+  "CBS",
+  "Cartoon Network",
+];

@@ -24,7 +24,8 @@ const TVShowInfomation = ({ tvInfo }) => {
       </div>
       <div className="mb-4">
         <p className="font-bold">Network</p>
-        {(tvInfo.networks.slice(0, 5) || []).map((network) => {
+        <div className="space-y-4">
+          {(tvInfo.networks.slice(0, 5) || []).map((network) => {
           return (
             <img
               className={
@@ -35,6 +36,7 @@ const TVShowInfomation = ({ tvInfo }) => {
             />
           );
         })}
+        </div>
       </div>
     </div>
   );

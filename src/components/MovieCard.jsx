@@ -8,6 +8,7 @@ const MovieCard = ({ id, title, releaseDate, poster, point, mediaType }) => {
     <Link
       to={mediaType === "tv" ? `/tv/${id}` : `/movie/${id}`}
       className="rounded-lg border border-slate-800"
+      onClick={() => window.scrollTo({ top: 0 })}
     >
       <div className="relative">
         {mediaType === "tv" && (

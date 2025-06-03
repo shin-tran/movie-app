@@ -54,12 +54,13 @@ const MovieDetail = () => {
         }
       />
       <div className="bg-black text-[1.2vw] text-white xl:text-[0.9vw]">
-        <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8">
+        <div className="container">
           <div className="flex-[2]">
             <ActorList actors={movieInfo.credits?.cast || []} />
             <RelatedMediaList
               mediaList={relatedMovies}
               isLoading={isRelatedMoviesLoading}
+              title={"More Like This"}
             />
           </div>
           <div className="flex-1">

@@ -1,9 +1,13 @@
 import ImageComponent from "@components/Image";
 import React from "react";
+import { Link } from "react-router";
 
-const ActorInfo = ({ name, character, profilePath, episodeCount }) => {
+const ActorInfo = ({ id, name, character, profilePath, episodeCount }) => {
   return (
-    <div className="overflow-hidden rounded-lg border border-slate-300 bg-black text-white shadow-sm">
+    <Link
+      className="overflow-hidden rounded-lg border border-slate-300 bg-black text-white shadow-sm"
+      to={`/people/${id}`}
+    >
       <ImageComponent
         src={
           profilePath
@@ -20,7 +24,7 @@ const ActorInfo = ({ name, character, profilePath, episodeCount }) => {
           <p>{`${episodeCount} ${episodeCount > 1 ? "Episodes" : "Episode"}`}</p>
         )}
       </div>
-    </div>
+    </Link>
   );
 };
 

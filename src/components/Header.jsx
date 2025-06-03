@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 right-0 left-0 z-50 flex items-center justify-between bg-black px-8 text-white transition-all duration-300 ${
+      className={`sticky top-0 right-0 left-0 z-50 flex items-center justify-between bg-black px-8 text-white transition-all duration-300 ${
         isScrolled
           ? "h-14 bg-black/80 py-2 shadow-lg backdrop-blur-sm"
           : "h-18 py-4"

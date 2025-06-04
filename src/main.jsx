@@ -1,6 +1,6 @@
+import "@/index.css";
 import { lazy, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "@/index.css";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import ModalProvider from "@context/ModalProvider";
 import RootLayout from "@pages/RootLayout";
@@ -10,6 +10,7 @@ const HomePage = lazy(() => import("@pages/HomePage"));
 const MovieDetail = lazy(() => import("@pages/MovieDetail"));
 const TVShowDetail = lazy(() => import("@pages/TVShowDetail"));
 const PeoplePage = lazy(() => import("@pages/PeoplePage"));
+const SearchPage = lazy(() => import("@pages/SearchPage"));
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
         },
         HydrateFallback: () => <Loading />,
       },
+      { path: "/search", element: <SearchPage /> },
     ],
   },
 ]);

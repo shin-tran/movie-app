@@ -38,7 +38,10 @@ const PeoplePage = () => {
               <div className="space-y-4">
                 <div>
                   <p className="font-bold">Known For</p>
-                  <p>{peopleInfo.known_for_department || "Not set / not specified"}</p>
+                  <p>
+                    {peopleInfo.known_for_department ||
+                      "Not set / not specified"}
+                  </p>
                 </div>
                 <div>
                   <p className="font-bold">Gender</p>
@@ -46,7 +49,9 @@ const PeoplePage = () => {
                 </div>
                 <div>
                   <p className="font-bold">Place of Birth</p>
-                  <p>{peopleInfo.place_of_birth || "Not set / not specified"}</p>
+                  <p>
+                    {peopleInfo.place_of_birth || "Not set / not specified"}
+                  </p>
                 </div>
                 <div>
                   <p className="font-bold">Birthday</p>
@@ -58,7 +63,9 @@ const PeoplePage = () => {
           <div className="flex-[2]">
             <div className="mb-6">
               <p className="mb-4 text-[1.4vw] font-bold">Biography</p>
-              <p className="whitespace-pre-line">{peopleInfo.biography || "Not set / not specified"}</p>
+              <p className="whitespace-pre-line">
+                {peopleInfo.biography || "Not set / not specified"}
+              </p>
             </div>
             <div>
               <RelatedMediaList

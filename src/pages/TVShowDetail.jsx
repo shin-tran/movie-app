@@ -72,6 +72,7 @@ const TVShowDetail = () => {
             <SeasonsList seasons={[...(tvInfo.seasons || [])].reverse()} />
             <Suspense fallback={<Loading />}>
               <RelatedMediaList
+                className={"mt-6"}
                 mediaList={relatedTVShow}
                 isLoading={isRecommandationLoading}
                 title={"More Like This"}

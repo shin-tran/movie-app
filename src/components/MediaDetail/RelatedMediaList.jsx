@@ -1,14 +1,14 @@
 import Loading from "@components/Loading";
 import MovieCard from "@components/MovieCard";
 
-const RelatedMediaList = ({ mediaList, isLoading, title }) => {
-  const uniqueMediaList = mediaList.filter((media, index, self) =>
-    index === self.findIndex(m => m.id === media.id)
+const RelatedMediaList = ({ mediaList, isLoading, title, className }) => {
+  const uniqueMediaList = mediaList.filter(
+    (media, index, self) => index === self.findIndex((m) => m.id === media.id),
   );
 
   return (
-    <div className="mt-6">
-      <p className="mb-4 text-[1.4vw] font-bold">{title}</p>
+    <div className={className}>
+      {title && <p className="mb-4 text-[1.4vw] font-bold">{title}</p>}
       {isLoading ? (
         <Loading />
       ) : (

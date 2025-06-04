@@ -35,15 +35,23 @@ const Header = () => {
             className={`object-cover transition-all duration-300 ${isScrolled ? "h-14 w-18 sm:w-20" : "h-18 w-20 sm:w-28"}`}
           />
         </Link>
-        <a href="#" className="transition hover:text-gray-300">
-          Movies
-        </a>
-        <a href="#" className="transition hover:text-gray-300">
-          TV Shows
-        </a>
+        <Link
+          to={"/search?mediaType=movie"}
+          className="transition hover:text-gray-300"
+        >
+          Movie
+        </Link>
+        <Link
+          to={"/search?mediaType=tv"}
+          className="transition hover:text-gray-300"
+        >
+          TV Show
+        </Link>
       </div>
       <div>
-        <FaMagnifyingGlass className="cursor-pointer" />
+        <Link to={"/search"}>
+          <FaMagnifyingGlass className="cursor-pointer transition hover:text-gray-300" />
+        </Link>
       </div>
     </header>
   );

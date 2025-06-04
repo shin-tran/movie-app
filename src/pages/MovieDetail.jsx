@@ -63,6 +63,7 @@ const MovieDetail = () => {
             <ActorList actors={movieInfo.credits?.cast || []} />
             <Suspense fallback={<Loading />}>
               <RelatedMediaList
+                className={"mt-6"}
                 mediaList={relatedMovies}
                 isLoading={isRelatedMoviesLoading}
                 title={"More Like This"}

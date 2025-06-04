@@ -14,8 +14,6 @@ const GenresInput = ({ control, onChange, value = [] }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mediaType]);
 
-  console.log(mediaType);
-
   return (
     <div className="flex flex-wrap gap-1">
       {(data.genres || []).map((genre) => {

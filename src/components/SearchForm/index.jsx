@@ -9,10 +9,9 @@ import { useSearchParams } from "react-router";
 const SearchForm = ({ setSearchFormValues }) => {
   const [searchParams] = useSearchParams();
   const mediaType = searchParams.get("mediaType");
-  console.log(mediaType);
   const { control, watch } = useForm({
     defaultValues: {
-      mediaType: ["movie", "tv"].includes(mediaType) || "movie",
+      mediaType: ["movie", "tv"].includes(mediaType) ? mediaType : "movie",
       genres: [],
       rating: "All",
     },
@@ -23,8 +22,6 @@ const SearchForm = ({ setSearchFormValues }) => {
     setSearchFormValues(formValues);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(formValues)]);
-
-  console.log(formValues);
 
   return (
     <div className="shadown-md rounded-lg border p-4">
